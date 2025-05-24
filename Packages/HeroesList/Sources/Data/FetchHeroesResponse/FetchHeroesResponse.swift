@@ -1,6 +1,13 @@
+//
+//  FetchHeroesResponse.swift
+//  Packages
+//
+//  Created by Amr Abd-Elhakim on 23/05/2025.
+//
+
 import Foundation
 
-struct CharacterDataContainer: Decodable {
+public struct FetchHeroesResponse: Decodable, Sendable {
     let count: Int
     let limit: Int
     let offset: Int
@@ -11,7 +18,7 @@ struct CharacterDataContainer: Decodable {
         case count, limit, offset, characters = "results"
     }
     
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let data = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
         self.count = try data.decode(Int.self, forKey: .count)
