@@ -25,10 +25,6 @@ let package = Package(
         .library(
             name: "HeroesList",
             targets: ["HeroesList"]),
-
-//        .library(
-//            name: "HeroesList",
-//            targets: ["HeroesList"]),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -64,12 +60,5 @@ let package = Package(
             ],
             path: "HeroesList/Sources"
         ),
-
-//        .target(
-//            name: "HeroesList",
-//            dependencies: [],
-//            path: "HeroesList/Sources"
-//        ),
-
     ]
 )

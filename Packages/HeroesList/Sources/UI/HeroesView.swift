@@ -9,6 +9,10 @@ import SwiftUI
 import CoreStyles
 
 public struct HeroesView: View {
+    private enum Constants {
+        static let title = "List of Heroes!"
+    }
+
     @ObservedObject private var viewModel: HeroesViewModel
     @State private var path = NavigationPath()
 
@@ -63,9 +67,9 @@ public struct HeroesView: View {
             }
         }
     }
-    
+
     private var title: some View {
-        Text(viewModel.pageTitle)
+        Text(Constants.title)
             .typography(.heading02)
             .foregroundStyle(.black)
     }
@@ -75,28 +79,24 @@ public struct HeroesView: View {
 
 private extension HeroesView {
     var list: some View {
-        VStack(
-            alignment: .leading,
-            spacing: Style.Spacing.xxs
-        ) {
-            // Use List for better memory unitlization. Lists provide automatic reusing for cells
-            List(viewModel.heroes) { hero in
-                let heroViewModel = HeroViewModel(hero: hero)
-                
-                HeroView(viewModel: heroViewModel)
-                    .onReceive(heroViewModel.subject) { action in
-                        switch action {
-                        case .didTapHeroCard:
-                            path.append(hero)
-                        }
+        // Use List for better memory unitlization. Lists provide automatic reusing for cells
+        List(viewModel.filteredHeroes) { hero in
+            let heroViewModel = HeroViewModel(hero: hero)
+            
+            HeroView(viewModel: heroViewModel)
+                .onReceive(heroViewModel.subject) { action in
+                    switch action {
+                    case .didTapHeroCard:
+                        path.append(hero)
                     }
-                    .listRowSeparator(.hidden) // hide separators
-                    .listRowInsets(EdgeInsets()) // remove default padding
-            }
-            .listStyle(.plain)
-            .navigationDestination(for: CharacterDataModel.self) { hero in
-                // Your destination view here
-            }
+                }
+                .listRowSeparator(.hidden) // hide separators
+                .listRowInsets(EdgeInsets()) // remove default padding
+        }
+        .listStyle(.plain)
+        .searchable(text: $viewModel.searchText, prompt: "Enter hero name...")
+        .navigationDestination(for: CharacterDataModel.self) { hero in
+            // Your destination view here
         }
     }
 }

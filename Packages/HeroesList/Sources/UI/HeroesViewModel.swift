@@ -11,46 +11,62 @@ import Combine
 @MainActor
 final public class HeroesViewModel: ObservableObject {
     @Published var heroes: [CharacterDataModel] = []
+    @Published var filteredHeroes: [CharacterDataModel] = []
+    @Published var searchText: String = ""
     @Published var isLoading: Bool = false
     @Published var errorMessage: String = ""
 
-    public var pageTitle: String {
-        "List of Heroes!"
-    }
-
     private let heroesUseCase: HeroesUseCase
+    private var cancellables = Set<AnyCancellable>()
 
     public init(heroesUseCase: HeroesUseCase) {
         self.heroesUseCase = heroesUseCase
+        setupObservables()
     }
 
+    private func setupObservables() {
+        $searchText
+            .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
+            .sink { [weak self] searchText in
+                self?.filterHeroes(with: searchText)
+            }
+            .store(in: &cancellables)
+    }
 }
 
+// MARK: - Fetch Heroes
+
 extension HeroesViewModel {
-    nonisolated func fetchHeroes() async {
-        let currentlyLoading = await MainActor.run { isLoading }
-        guard !currentlyLoading else { return }
+    func fetchHeroes() async {
+        isLoading = true
+        defer { isLoading = false }
         
-        await MainActor.run { isLoading = true }
-
         do {
-            
             let response = try await heroesUseCase.execute(request: FetchHeroesRequset())
-            await MainActor.run {
-                self.heroes.append(contentsOf: response.characters)
-                self.isLoading = false
-            }
-
+            heroes = response.characters
+            filterHeroes(with: searchText) // Apply current search after fetching
         } catch {
-            await MainActor.run {
-                self.errorMessage = error.localizedDescription
-                self.isLoading = false
-            }
-
+            errorMessage = error.localizedDescription
         }
     }
 }
 
+// MARK: - Filter
+extension HeroesViewModel {
+    private func filterHeroes(with searchText: String) {
+        if searchText.isEmpty {
+            filteredHeroes = heroes
+        } else {
+            filteredHeroes = heroes.filter { hero in
+                hero.name.localizedCaseInsensitiveContains(searchText)
+            }
+        }
+    }
+    
+    func clearSearch() {
+        searchText = ""
+    }
+}
 // MARK: Mocks
 
 #if DEBUG
