@@ -7,6 +7,7 @@
 
 import Combine
 import Foundation
+import SharedModels
 
 private enum Constant {
     static let imageSize = "/detail."

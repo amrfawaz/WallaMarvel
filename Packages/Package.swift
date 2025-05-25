@@ -25,6 +25,12 @@ let package = Package(
         .library(
             name: "HeroesList",
             targets: ["HeroesList"]),
+        .library(
+            name: "HeroDetails",
+            targets: ["HeroDetails"]),
+        .library(
+            name: "SharedModels",
+            targets: ["SharedModels"]),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -56,9 +62,26 @@ let package = Package(
                 "CoreStyles",
                 "EnvironmentVariables",
                 "NetworkProvider",
-                "Helpers"
+                "Helpers",
+                "SharedModels"
             ],
             path: "HeroesList/Sources"
+        ),
+        .target(
+            name: "HeroDetails",
+            dependencies: [
+                "CoreStyles",
+                "EnvironmentVariables",
+                "NetworkProvider",
+                "Helpers",
+                "SharedModels"
+            ],
+            path: "HeroDetails/Sources"
+        ),
+        .target(
+            name: "SharedModels",
+            dependencies: [],
+            path: "SharedModels/Sources"
         ),
     ]
 )

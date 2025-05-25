@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SharedModels
 
 public struct FetchHeroesResponse: Decodable, Sendable {
     let count: Int

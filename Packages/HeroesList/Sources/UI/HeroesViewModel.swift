@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import SharedModels
 
 @MainActor
 final public class HeroesViewModel: ObservableObject {

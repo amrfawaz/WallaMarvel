@@ -2,9 +2,9 @@ import Foundation
 
 public struct CharacterDataModel: Decodable, Hashable, Identifiable, Sendable {
     public let id: Int
-    let name: String
-    let description: String
-    let thumbnail: Thumbnail
+    public let name: String
+    public let description: String
+    public let thumbnail: Thumbnail
 }
 
 // MARK: - Mocks
