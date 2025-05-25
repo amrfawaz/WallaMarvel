@@ -17,6 +17,8 @@ final public class HeroesViewModel: ObservableObject {
     @Published var errorMessage: String = ""
 
     private let heroesUseCase: HeroesUseCase
+
+    private var currentPage = 0
     private var cancellables = Set<AnyCancellable>()
 
     public init(heroesUseCase: HeroesUseCase) {
@@ -42,8 +44,9 @@ extension HeroesViewModel {
         defer { isLoading = false }
         
         do {
-            let response = try await heroesUseCase.execute(request: FetchHeroesRequset())
-            heroes = response.characters
+            let response = try await heroesUseCase.execute(request: FetchHeroesRequset(page: self.currentPage))
+            heroes.append(contentsOf: response.characters)
+            currentPage = (response.offset / response.limit) + 1
             filterHeroes(with: searchText) // Apply current search after fetching
         } catch {
             errorMessage = error.localizedDescription

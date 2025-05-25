@@ -38,11 +38,7 @@ public struct HeroesView: View {
                         dismissButton: .default(Text("OK"))
                     )
                 }
-                .onFirstAppear {
-                    Task {
-                        await viewModel.fetchHeroes()
-                    }
-                }
+
         }
     }
     
@@ -84,9 +80,18 @@ private extension HeroesView {
             let heroViewModel = HeroViewModel(hero: hero)
             
             HeroView(viewModel: heroViewModel)
+                .onFirstAppear {
+                    // Trigger pagination when the last movie appears
+                    if viewModel.searchText.isEmpty, hero.id == viewModel.filteredHeroes.last?.id {
+                        Task {
+                            await viewModel.fetchHeroes()
+                        }
+                    }
+                }
                 .onReceive(heroViewModel.subject) { action in
                     switch action {
                     case .didTapHeroCard:
+                        print("hero card tapped")
                         path.append(hero)
                     }
                 }
@@ -96,7 +101,7 @@ private extension HeroesView {
         .listStyle(.plain)
         .searchable(text: $viewModel.searchText, prompt: "Enter hero name...")
         .navigationDestination(for: CharacterDataModel.self) { hero in
-            // Your destination view here
+            
         }
     }
 }

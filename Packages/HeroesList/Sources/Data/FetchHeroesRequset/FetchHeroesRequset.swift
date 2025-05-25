@@ -53,6 +53,8 @@ public extension Request {
 }
 
 public struct FetchHeroesRequset: Request {
+    let page: Int
+
     public var endPoint: String {
         return EnvironmentVariables.Endpoints.getHeroes.rawValue
     }
@@ -61,7 +63,13 @@ public struct FetchHeroesRequset: Request {
         return [
             "apikey": publicKey,
             "ts": ts,
-            "hash": hash
+            "hash": hash,
+            "limit": "10",
+            "offset": "\(page * 10)"
         ]
+    }
+
+    public init(page: Int) {
+        self.page = page
     }
 }
