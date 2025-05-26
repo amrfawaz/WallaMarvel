@@ -84,5 +84,17 @@ let package = Package(
             dependencies: [],
             path: "SharedModels/Sources"
         ),
+
+        
+        
+        // MARK: - Test Targets
+        
+        .testTarget(
+            name: "HeroesListTests",
+            dependencies: [
+                "HeroesList"
+            ],
+            path: "HeroesList/Tests"
+        )
     ]
 )
