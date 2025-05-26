@@ -45,6 +45,6 @@ public extension Style {
     enum Size {
         public static let heroCardHeight: Double = 200
         public static let heroCardImageHeight: Double = 154
-        public static let heroImageCoverHeight: Double = 285
+        public static let heroImageCoverHeight: Double = 340
     }
 }

@@ -17,6 +17,9 @@ public extension Style {
 
         /// theme-button-02
         case button02
+
+        /// theme-caption-01
+        case caption02
     }
 }
 
@@ -37,6 +40,8 @@ public extension Style.Font {
             .six
         case .button02:
             .six
+        case .caption02:
+            .six
         }
     }
 
@@ -52,6 +57,8 @@ public extension Style.Font {
             .three
         case .button02:
             .three
+        case .caption02:
+            .three
         }
     }
 
@@ -62,6 +69,8 @@ public extension Style.Font {
         case .button01:
             .pro0
         case .button02:
+            .pro1
+        case .caption02:
             .pro1
         }
     }

@@ -38,7 +38,6 @@ struct HeroView: View {
         .onTapGesture {
             viewModel.subject.send(.didTapHeroCard)
         }
-
     }
 }
 
@@ -118,7 +117,7 @@ private extension HeroView {
     var title: some View {
         Text(viewModel.name)
             .typography(.button01)
-            .foregroundStyle(.black)
+            .foregroundStyle(.primary)
     }
 }
 

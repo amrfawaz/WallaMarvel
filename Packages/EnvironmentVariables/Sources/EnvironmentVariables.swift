@@ -15,8 +15,18 @@ public enum EnvironmentVariables: String {
     case accept = "application/json"
 
     // Endpoints
-    public enum Endpoints: String {
-        case getHeroes = "/public/characters"
+    public enum Endpoints {
+        case getHeroes
+        case getHeroDetails(id: Int)
+        
+        public var path: String {
+            switch self {
+            case .getHeroes:
+                return "/public/characters"
+            case .getHeroDetails(let id):
+                return "/public/characters/\(id)"
+            }
+        }
     }
 }
 

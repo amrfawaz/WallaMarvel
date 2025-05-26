@@ -6,57 +6,14 @@
 //
 
 import Foundation
-
-import Foundation
 import EnvironmentVariables
 import NetworkProvider
-import Helpers
-
-public protocol Request {
-    var privateKey: String { get }
-    var publicKey: String { get }
-    var ts: String { get }
-    var hash: String { get }
-    var params: [String: String] { get }
-    var endPoint: String { get }
-    var request: URLRequest? { get }
-}
-
-public extension Request {
-    var privateKey: String {
-        EnvironmentVariables.privateKey.rawValue
-    }
-    var publicKey: String {
-        EnvironmentVariables.publicKey.rawValue
-    }
-    var ts: String {
-        return String(Int(Date().timeIntervalSince1970))
-    }
-    var hash: String {
-        return "\(ts)\(privateKey)\(publicKey)".md5
-    }
-    var request: URLRequest? {
-        let urlString = EnvironmentVariables.baseUrl.rawValue + EnvironmentVariables.version.rawValue + endPoint
-
-        guard let url = URL(string: urlString) else { return nil }
-
-        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
-        components?.queryItems = params.map { URLQueryItem(name: $0.key, value: $0.value) }
-
-        guard let url = components?.url else { return nil }
-
-        var request = URLRequest(url: url)
-        request.setValue(EnvironmentVariables.accept.rawValue, forHTTPHeaderField: "accept")
-        request.httpMethod = HTTPMethod.get.rawValue
-        return request
-    }
-}
 
 public struct FetchHeroesRequset: Request {
     let page: Int
 
     public var endPoint: String {
-        return EnvironmentVariables.Endpoints.getHeroes.rawValue
+        return EnvironmentVariables.Endpoints.getHeroes.path
     }
 
     public var params: [String: String] {

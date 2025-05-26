@@ -9,9 +9,9 @@ import Foundation
 import NetworkProvider
 
 public class HeroesUseCase: @unchecked Sendable {
-    private let repository: HeroesRepositories
+    private let repository: HeroesRepository
 
-    public init(repository: HeroesRepositories) {
+    public init(repository: HeroesRepository) {
         self.repository = repository
     }
 

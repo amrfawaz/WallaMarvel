@@ -5,6 +5,9 @@ public struct CharacterDataModel: Decodable, Hashable, Identifiable, Sendable {
     public let name: String
     public let description: String
     public let thumbnail: Thumbnail
+    public let comics: HeroInfoList
+    public let series: HeroInfoList
+    public let stories: HeroInfoList
 }
 
 // MARK: - Mocks
@@ -20,7 +23,11 @@ extension CharacterDataModel {
             thumbnail: Thumbnail(
                 path: "http://i.annihil.us/u/prod/marvel/i/mg/6/20/52602f21f29ec",
                 extension: "jpg"
-            )
+                
+            ),
+            comics: HeroInfoList(items: []),
+            series: HeroInfoList(items: []),
+            stories: HeroInfoList(items: [])
         )
     }
 
@@ -33,7 +40,10 @@ extension CharacterDataModel {
                 thumbnail: Thumbnail(
                     path: "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784",
                     extension: "jpg"
-                )
+                ),
+                comics: HeroInfoList(items: []),
+                series: HeroInfoList(items: []),
+                stories: HeroInfoList(items: [])
             ),
             CharacterDataModel (
                 id: 1017100,
@@ -42,7 +52,10 @@ extension CharacterDataModel {
                 thumbnail: Thumbnail(
                     path: "http://i.annihil.us/u/prod/marvel/i/mg/3/20/5232158de5b16",
                     extension: "jpg"
-                )
+                ),
+                comics: HeroInfoList(items: []),
+                series: HeroInfoList(items: []),
+                stories: HeroInfoList(items: [])
             ),
             CharacterDataModel (
                 id: 1009144,
@@ -51,7 +64,10 @@ extension CharacterDataModel {
                 thumbnail: Thumbnail(
                     path: "http://i.annihil.us/u/prod/marvel/i/mg/6/20/52602f21f29ec",
                     extension: "jpg"
-                )
+                ),
+                comics: HeroInfoList(items: []),
+                series: HeroInfoList(items: []),
+                stories: HeroInfoList(items: [])
             ),
             CharacterDataModel (
                 id: 1009146,
@@ -60,7 +76,10 @@ extension CharacterDataModel {
                 thumbnail: Thumbnail(
                     path: "http://i.annihil.us/u/prod/marvel/i/mg/9/50/4ce18691cbf04",
                     extension: "jpg"
-                )
+                ),
+                comics: HeroInfoList(items: []),
+                series: HeroInfoList(items: []),
+                stories: HeroInfoList(items: [])
             ),
             CharacterDataModel (
                 id: 1016823,
@@ -69,7 +88,10 @@ extension CharacterDataModel {
                 thumbnail: Thumbnail(
                     path: "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available",
                     extension: "jpg"
-                )
+                ),
+                comics: HeroInfoList(items: []),
+                series: HeroInfoList(items: []),
+                stories: HeroInfoList(items: [])
             ),
             CharacterDataModel (
                 id: 1009148,
@@ -78,7 +100,10 @@ extension CharacterDataModel {
                 thumbnail: Thumbnail(
                     path: "http://i.annihil.us/u/prod/marvel/i/mg/1/b0/5269678709fb7",
                     extension: "jpg"
-                )
+                ),
+                comics: HeroInfoList(items: []),
+                series: HeroInfoList(items: []),
+                stories: HeroInfoList(items: [])
             ),
             CharacterDataModel (
                 id: 1009149,
@@ -87,7 +112,10 @@ extension CharacterDataModel {
                 thumbnail: Thumbnail(
                     path: "http://i.annihil.us/u/prod/marvel/i/mg/9/30/535feab462a64",
                     extension: "jpg"
-                )
+                ),
+                comics: HeroInfoList(items: []),
+                series: HeroInfoList(items: []),
+                stories: HeroInfoList(items: [])
             ),
             CharacterDataModel (
                 id: 1011266,
@@ -96,7 +124,10 @@ extension CharacterDataModel {
                 thumbnail: Thumbnail(
                     path: "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available",
                     extension: "jpg"
-                )
+                ),
+                comics: HeroInfoList(items: []),
+                series: HeroInfoList(items: []),
+                stories: HeroInfoList(items: [])
             )
         ]
     }

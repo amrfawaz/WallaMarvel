@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreStyles
 import SharedModels
+import HeroDetails
 
 public struct HeroesView: View {
     private enum Constants {
@@ -68,7 +69,7 @@ public struct HeroesView: View {
     private var title: some View {
         Text(Constants.title)
             .typography(.heading02)
-            .foregroundStyle(.black)
+            .foregroundStyle(.primary)
     }
 }
 
@@ -102,11 +103,17 @@ private extension HeroesView {
         .listStyle(.plain)
         .searchable(text: $viewModel.searchText, prompt: "Enter hero name...")
         .navigationDestination(for: CharacterDataModel.self) { hero in
-            
+            let repository = HeroDetailsRepositoryImpl(api: HeroDetailsAPI())
+            let usecase = HeroDetailsUseCase(repository: repository)
+            let heroDetailsViewModel = HeroDetailsViewModel(
+                heroId: hero.id,
+                heroDetailsUseCase: usecase
+            )
+                                                            
+            HeroDetailsView(viewModel: heroDetailsViewModel, path: $path)
         }
     }
 }
-
 
 // MARK: - Preview
 

@@ -8,7 +8,7 @@
 import Foundation
 import NetworkProvider
 
-public class HeroesRepositoryImpl: HeroesRepositories {
+public class HeroesRepositoryImpl: HeroesRepository {
     private let api: HeroesAPI
 
     public init(api: HeroesAPI) {

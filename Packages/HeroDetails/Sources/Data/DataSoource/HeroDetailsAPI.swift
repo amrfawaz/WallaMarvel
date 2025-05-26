@@ -1,18 +1,19 @@
 //
-//  HeroesAPI.swift
+//  HeroDetailsAPI.swift
 //  Packages
 //
-//  Created by Amr Abd-Elhakim on 24/05/2025.
+//  Created by Amr Abd-Elhakim on 25/05/2025.
 //
 
 import Foundation
 import NetworkProvider
+import SharedModels
 
-public protocol HeroAPIProtocol {
-    func fetchHeroes(request: Request) async throws -> FetchHeroesResponse
+public protocol HeroDetailsAPIProtocol {
+    func fetchHeroDetails(request: Request) async throws -> CharacterDataModel
 }
 
-public class HeroesAPI: HeroAPIProtocol {
+public class HeroDetailsAPI: HeroDetailsAPIProtocol {
     private let networkProvider: NetworkProvider
     private let urlSession = URLSession.shared
 
@@ -20,7 +21,7 @@ public class HeroesAPI: HeroAPIProtocol {
         self.networkProvider = networkProvider
     }
 
-    public func fetchHeroes(request: Request) async throws -> FetchHeroesResponse {
+    public func fetchHeroDetails(request: Request) async throws -> CharacterDataModel {
         guard let url = request.request?.url else { throw NetworkError.invalidURL }
 
         print(url.absoluteString)
@@ -30,7 +31,12 @@ public class HeroesAPI: HeroAPIProtocol {
         guard let request = request.request else { throw NetworkError.invalidRequest }
 
         do {
-            return try await networkProvider.request(request: request, of: FetchHeroesResponse.self)
+            let response = try await networkProvider.request(
+                request: request,
+                of: FetchHeroDetailsResponse.self
+            )
+            guard let hero = response.characters.first else { throw NetworkError.noData }
+            return hero
         } catch {
             throw error
         }
