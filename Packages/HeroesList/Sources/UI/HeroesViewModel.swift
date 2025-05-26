@@ -9,7 +9,6 @@ import Foundation
 import Combine
 import SharedModels
 
-@MainActor
 final public class HeroesViewModel: ObservableObject {
     @Published var heroes: [CharacterDataModel] = []
     @Published var filteredHeroes: [CharacterDataModel] = []
@@ -40,6 +39,7 @@ final public class HeroesViewModel: ObservableObject {
 // MARK: - Fetch Heroes
 
 extension HeroesViewModel {
+    @MainActor
     func fetchHeroes() async {
         isLoading = true
         defer { isLoading = false }
