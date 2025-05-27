@@ -45,7 +45,11 @@ extension HeroesViewModel {
         defer { isLoading = false }
         
         do {
-            let response = try await heroesUseCase.execute(request: FetchHeroesRequset(page: self.currentPage))
+            // Make the api call in the background thread by detaching the task
+            let response = try await Task.detached { [heroesUseCase, currentPage] in
+                return try await heroesUseCase.execute(request: FetchHeroesRequset(page: currentPage))
+            }.value
+
             heroes.append(contentsOf: response.characters)
             currentPage = (response.offset / response.limit) + 1
             filterHeroes(with: searchText) // Apply current search after fetching
