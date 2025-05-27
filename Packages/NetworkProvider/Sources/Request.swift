@@ -21,10 +21,10 @@ public protocol Request {
 
 public extension Request {
     var privateKey: String {
-        EnvironmentVariables.privateKey.rawValue
+        Bundle.main.object(forInfoDictionaryKey: "PRIVATE_KEY") as? String ?? ""
     }
     var publicKey: String {
-        EnvironmentVariables.publicKey.rawValue
+        Bundle.main.object(forInfoDictionaryKey: "PUBLIC_KEY") as? String ?? ""
     }
     var ts: String {
         return String(Int(Date().timeIntervalSince1970))

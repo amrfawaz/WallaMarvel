@@ -8,8 +8,6 @@
 import Foundation
 
 public enum EnvironmentVariables: String {
-    case privateKey = "188f9a5aa76846d907c41cbea6506e4cc455293f"
-    case publicKey = "d575c26d5c746f623518e753921ac847"
     case baseUrl = "https://gateway.marvel.com:443"
     case version = "/v1"
     case accept = "application/json"
@@ -29,4 +27,3 @@ public enum EnvironmentVariables: String {
         }
     }
 }
-

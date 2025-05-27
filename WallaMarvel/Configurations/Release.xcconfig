@@ -1,0 +1,9 @@
+//
+//  Release.xcconfig
+//  WallaMarvel
+//
+//  Created by Amr Abd-Elhakim on 27/05/2025.
+//
+
+PUBLIC_KEY = d575c26d5c746f623518e753921ac847
+PRIVATE_KEY = 188f9a5aa76846d907c41cbea6506e4cc455293f
