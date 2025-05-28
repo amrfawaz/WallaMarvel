@@ -6,17 +6,18 @@
 //
 
 import SwiftUI
-import HeroesList
+import SharedModels
 
 @main
 struct WallaMarvelApp: App {
+    @MainActor
+    private let dependencies = DependencyContainer()
+
     var body: some Scene {
         WindowGroup {
-            let repository = HeroesRepositoryImpl(api: HeroesAPI())
-            let usecase = HeroesUseCase(repository: repository)
-            let viewModel = HeroesViewModel(heroesUseCase: usecase)
-            
-            HeroesView(viewModel: viewModel)
+            NavigationContainer(
+                coordinator: AppCoordinator(dependencies: dependencies)
+            )
         }
     }
 }

@@ -63,8 +63,7 @@ let package = Package(
                 "EnvironmentVariables",
                 "NetworkProvider",
                 "Helpers",
-                "SharedModels",
-                "HeroDetails"
+                "SharedModels"
             ],
             path: "HeroesList/Sources"
         ),

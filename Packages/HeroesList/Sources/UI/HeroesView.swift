@@ -16,32 +16,34 @@ public struct HeroesView: View {
     }
 
     @ObservedObject private var viewModel: HeroesViewModel
-    @State private var path = NavigationPath()
 
-    public init(viewModel: HeroesViewModel) {
+    private let navigator: HeroesNavigationProtocol
+
+    public init(
+        viewModel: HeroesViewModel,
+        navigator: HeroesNavigationProtocol
+    ) {
         self.viewModel = viewModel
+        self.navigator = navigator
     }
-
+    
     public var body: some View {
-        NavigationStack(path: $path) {
-            content
-                .padding(.all, Style.Spacing.md)
-                .alert(isPresented: Binding<Bool>(
-                    get: { !viewModel.errorMessage.isEmpty },
-                    set: { newValue in
-                        if !newValue {
-                            viewModel.errorMessage = ""
-                        }
+        content
+            .padding(.all, Style.Spacing.md)
+            .alert(isPresented: Binding<Bool>(
+                get: { !viewModel.errorMessage.isEmpty },
+                set: { newValue in
+                    if !newValue {
+                        viewModel.errorMessage = ""
                     }
-                )) {
-                    Alert(
-                        title: Text("Error"),
-                        message: Text(viewModel.errorMessage),
-                        dismissButton: .default(Text("OK"))
-                    )
                 }
-
-        }
+            )) {
+                Alert(
+                    title: Text("Error"),
+                    message: Text(viewModel.errorMessage),
+                    dismissButton: .default(Text("OK"))
+                )
+            }
     }
     
     private var content: some View {
@@ -93,8 +95,7 @@ private extension HeroesView {
                 .onReceive(heroViewModel.subject) { action in
                     switch action {
                     case .didTapHeroCard:
-                        print("hero card tapped")
-                        path.append(hero)
+                        navigator.showHeroDetail(hero.id)
                     }
                 }
                 .listRowSeparator(.hidden) // hide separators
@@ -102,33 +103,5 @@ private extension HeroesView {
         }
         .listStyle(.plain)
         .searchable(text: $viewModel.searchText, prompt: "Enter hero name...")
-        .navigationDestination(for: CharacterDataModel.self) { hero in
-            let repository = HeroDetailsRepositoryImpl(api: HeroDetailsAPI())
-            let usecase = HeroDetailsUseCase(repository: repository)
-            let heroDetailsViewModel = HeroDetailsViewModel(
-                heroId: hero.id,
-                heroDetailsUseCase: usecase
-            )
-                                                            
-            HeroDetailsView(viewModel: heroDetailsViewModel, path: $path)
-        }
     }
 }
-
-// MARK: - Preview
-
-#if DEBUG
-struct HeroesView_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack {
-            heroesView()
-        }
-    }
-
-    private static func heroesView() -> some View {
-        @State var path = NavigationPath()
-
-        return HeroesView(viewModel: .mockHeroesViewModel)
-    }
-}
-#endif
