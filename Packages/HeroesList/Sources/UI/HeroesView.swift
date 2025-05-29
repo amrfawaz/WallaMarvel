@@ -8,7 +8,6 @@
 import SwiftUI
 import CoreStyles
 import SharedModels
-import HeroDetails
 
 public struct HeroesView: View {
     private enum Constants {

@@ -13,8 +13,6 @@
 		1A0E3ABC2862F7E300132FCB /* WallaMarvelUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0E3ABB2862F7E300132FCB /* WallaMarvelUITestsLaunchTests.swift */; };
 		4267E09C2DE5BE9D00129A2D /* Debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4267E09B2DE5BE9800129A2D /* Debug.xcconfig */; };
 		4267E09E2DE5BEDD00129A2D /* Release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4267E09D2DE5BEDD00129A2D /* Release.xcconfig */; };
-		4267E0AB2DE7BC0900129A2D /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4267E0AA2DE7BC0900129A2D /* AppCoordinator.swift */; };
-		4267E0AE2DE7BEB900129A2D /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4267E0AD2DE7BEB900129A2D /* DependencyContainer.swift */; };
 		42D39D962DE14F4C00E6C0B2 /* HeroesList in Frameworks */ = {isa = PBXBuildFile; productRef = 42D39D952DE14F4C00E6C0B2 /* HeroesList */; };
 		42D39D982DE1500000E6C0B2 /* WallaMarvelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42D39D972DE1500000E6C0B2 /* WallaMarvelApp.swift */; };
 		42D39D9E2DE1D3E200E6C0B2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42D39D9D2DE1D3E200E6C0B2 /* Preview Assets.xcassets */; };
@@ -48,8 +46,6 @@
 		1A0E3ABB2862F7E300132FCB /* WallaMarvelUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallaMarvelUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4267E09B2DE5BE9800129A2D /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		4267E09D2DE5BEDD00129A2D /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
-		4267E0AA2DE7BC0900129A2D /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
-		4267E0AD2DE7BEB900129A2D /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 		42D39D872DE0E8E000E6C0B2 /* Packages */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Packages; sourceTree = "<group>"; };
 		42D39D972DE1500000E6C0B2 /* WallaMarvelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallaMarvelApp.swift; sourceTree = "<group>"; };
 		42D39D9D2DE1D3E200E6C0B2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -106,8 +102,6 @@
 		1A0E3A972862F7E200132FCB /* WallaMarvel */ = {
 			isa = PBXGroup;
 			children = (
-				4267E0AC2DE7BEB000129A2D /* DI */,
-				4267E0A92DE7BC0100129A2D /* Coordination */,
 				4267E09A2DE5B73700129A2D /* Configurations */,
 				42D39D9F2DE1D3F200E6C0B2 /* Preview Content */,
 				42D39D972DE1500000E6C0B2 /* WallaMarvelApp.swift */,
@@ -141,22 +135,6 @@
 				4267E09D2DE5BEDD00129A2D /* Release.xcconfig */,
 			);
 			path = Configurations;
-			sourceTree = "<group>";
-		};
-		4267E0A92DE7BC0100129A2D /* Coordination */ = {
-			isa = PBXGroup;
-			children = (
-				4267E0AA2DE7BC0900129A2D /* AppCoordinator.swift */,
-			);
-			path = Coordination;
-			sourceTree = "<group>";
-		};
-		4267E0AC2DE7BEB000129A2D /* DI */ = {
-			isa = PBXGroup;
-			children = (
-				4267E0AD2DE7BEB900129A2D /* DependencyContainer.swift */,
-			);
-			path = DI;
 			sourceTree = "<group>";
 		};
 		42D39D942DE14F4C00E6C0B2 /* Frameworks */ = {
@@ -308,8 +286,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4267E0AB2DE7BC0900129A2D /* AppCoordinator.swift in Sources */,
-				4267E0AE2DE7BEB900129A2D /* DependencyContainer.swift in Sources */,
 				42D39D982DE1500000E6C0B2 /* WallaMarvelApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
