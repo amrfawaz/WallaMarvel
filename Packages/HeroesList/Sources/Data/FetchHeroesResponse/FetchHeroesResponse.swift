@@ -28,4 +28,16 @@ public struct FetchHeroesResponse: Decodable, Sendable {
         
         self.characters = try data.decode([CharacterDataModel].self, forKey: .characters)
     }
+
+    init(
+        count: Int,
+        limit: Int,
+        offset: Int,
+        characters: [CharacterDataModel]
+    ) {
+        self.count = count
+        self.limit = limit
+        self.offset = offset
+        self.characters = characters
+    }
 }

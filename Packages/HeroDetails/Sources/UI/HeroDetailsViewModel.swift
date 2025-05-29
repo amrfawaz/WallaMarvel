@@ -9,7 +9,6 @@ import Foundation
 import Combine
 import SharedModels
 
-@MainActor
 public final class HeroDetailsViewModel: ObservableObject {
     private enum Constant {
         static let imageSize = "/detail."
@@ -80,12 +79,16 @@ public final class HeroDetailsViewModel: ObservableObject {
 // MARK: - Fetch Hero Details
 
 extension HeroDetailsViewModel {
+    @MainActor
     func fetchHeroDetails() async {
         isLoading = true
         defer { isLoading = false }
         
         do {
-            hero = try await heroDetailsUseCase.execute(request: FetchHeroesRequset(id: heroId))
+            // Make the api call in the background thread by detaching the task
+            hero = try await Task.detached { [heroDetailsUseCase, heroId] in
+                return try await heroDetailsUseCase.execute(request: FetchHeroesRequset(id: heroId))
+            }.value
         } catch {
             errorMessage = error.localizedDescription
         }

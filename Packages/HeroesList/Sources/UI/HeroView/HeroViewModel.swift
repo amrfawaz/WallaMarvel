@@ -41,7 +41,7 @@ final class HeroViewModel: ObservableObject {
 #if DEBUG
 extension HeroViewModel {
     static var mockHeroViewModel: HeroViewModel {
-        HeroViewModel(hero: .mockedHero)
+        HeroViewModel(hero: .mockedHero1)
     }
 }
 #endif

@@ -10,14 +10,9 @@ import CoreStyles
 
 public struct HeroDetailsView: View {
     @ObservedObject var viewModel: HeroDetailsViewModel
-    @Binding var path: NavigationPath
 
-    public init(
-        viewModel: HeroDetailsViewModel,
-        path: Binding<NavigationPath>
-    ) {
+    public init(viewModel: HeroDetailsViewModel) {
         self.viewModel = viewModel
-        self._path = path
     }
 
     public var  body: some View {

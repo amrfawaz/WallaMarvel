@@ -19,3 +19,24 @@ public class HeroesRepositoryImpl: HeroesRepository {
         return try await api.fetchHeroes(request: request)
     }
 }
+
+
+// MARK: - Mocks
+
+#if DEBUG
+final class MockHeroesRepository: HeroesRepository {
+    var result: Result<FetchHeroesResponse, Error>?
+    
+    func fetchHeroes<T>(request: T) async throws -> FetchHeroesResponse where T : Request {
+        print("Mock fetchHeroes called with request: \(request)")
+        switch result {
+        case .success(let response)?:
+            return response
+        case .failure(let error)?:
+            throw error
+        case .none:
+            fatalError("Mock result not set")
+        }
+    }
+}
+#endif
