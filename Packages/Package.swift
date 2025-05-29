@@ -66,7 +66,7 @@ let package = Package(
                 "SharedModels",
                 "HeroDetails"
             ],
-            path: "HeroesList/Sources"
+            path: "Features/HeroesList/Sources"
         ),
         .target(
             name: "HeroDetails",
@@ -77,7 +77,7 @@ let package = Package(
                 "Helpers",
                 "SharedModels"
             ],
-            path: "HeroDetails/Sources"
+            path: "Features/HeroDetails/Sources"
         ),
         .target(
             name: "SharedModels",
@@ -94,7 +94,7 @@ let package = Package(
             dependencies: [
                 "HeroesList"
             ],
-            path: "HeroesList/Tests"
+            path: "Features/HeroesList/Tests"
         )
     ]
 )
