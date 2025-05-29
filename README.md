@@ -61,7 +61,6 @@ The app is built using Clean architecture with MVVM-C (Model-View-ViewModel) arc
 
 
 ### Folders structure ##
-
 - {FeatureName}
     - Sources
       - DI
@@ -87,3 +86,13 @@ The app is built using Clean architecture with MVVM-C (Model-View-ViewModel) arc
               - {ScreenName2}ViewModel.swift
               - {ScreenName2}ViewIntent.swift
               - ...
+
+
+* Main Packages:
+  * CoreStyles: Contains shared SwiftUI components, and shared design system (colors, font and margin sizes)
+  * EnvironmentVariables: Contains the shared values, configurations and settings
+  * Helpers: Contains any helper functions and extenstions
+  * NetworkProvider: Base networking classes, not changed during later development phase. This package contains:
+    * Request: There is a very generic protocol that has all the fields possible by a request to have and can be confimed by any request to a ready request to call.
+    * NetworkProvider: Are concrete implementations that make use of defined Request and make actual requests. `NetworkProvider` should not be overridden, just used by the API with a specific Request.
+  * SharedModels: Contains shared Models and Base Coordinator logic.
