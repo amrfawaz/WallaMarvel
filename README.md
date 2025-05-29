@@ -16,11 +16,12 @@ This app contains list of Marvel characters returned from Marvel API. You can al
 - Xcode 16.3
 - iOS SDK 16+
 - Swift 6+
+- SwiftUI
 
 ## Features
 
 **Home Screen (Heroes List)**
-- Displays a scrollable list of Heroes retuned by consuming "/public/characters"
+- Displays a scrollable list of Heroes retuned by consuming `/public/characters`
 - Each Hero item shows:
   - Image
   - Name
